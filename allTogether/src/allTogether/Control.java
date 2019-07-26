@@ -6,7 +6,8 @@ public class Control {
 	public static final int MAX_WORDS = 128;
 	private static int group = 0;
 
-	public static void main(String[] args) {
+	public static void assemble() 
+	{
 		String[][] storage;
 		String[][][] shifted;
 		String[][][] sorted;
