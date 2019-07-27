@@ -11,6 +11,7 @@ public class Foundation {
 	
 	public static void main(String[] args) throws IOException
 	{
+		Database db = new Database();
 		String[] input = null;
 		List<String[]> list = new ArrayList<String[]>();
 		try 
@@ -20,6 +21,10 @@ public class Foundation {
 		{
 			e.printStackTrace();
 		}
+		/*for(int i = 0; i < input.length; i++)
+		{
+			System.out.println(i + ": " + input[i] + "\n");
+		}*/
 		for(int i = 0; i < input.length; i++)
 		{
 			if((i + 1) % 3 == 0)
@@ -33,45 +38,51 @@ public class Foundation {
 		{
 			inArrForm[i] = list.get(i);
 		}
-		for(int i = 0; i < inArrForm.length - 1; i++)
-		{
-			System.out.println(i + ": " + inArrForm[i][0]);
-		}
-		String[][] shifted;
-		String[][] sorted;
-		int total = 0;
-		for(int i = 0; i < inArrForm.length; i++)
-		{
-			total += inArrForm[i].length;
-		}
-		shifted = new String[total][];
-		total = 0;
+		int group = 0;
+		String restOfString = "";
 		for(int i = 0; i < inArrForm.length; i++)
 		{
 			String[][] temp;
 			temp = CircularShift.shift(inArrForm[i]);
-			for(String[] strTemp : temp)
+			for(int j = 0; j < temp.length; j++)
 			{
-				shifted[total] = strTemp;
-				total++;
+				restOfString = "";
+				for(int m = 1; m < temp[j].length; m++)
+				{
+					restOfString += temp[j][m] + " ";
+				}
+				db.add(temp[j][0], restOfString, input[group], input[group + 1], input[group + 2]);
 			}
+			group += 3;
 		}
-		File file = new File("all.txt");
-		BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-		for(int i = 0; i < shifted.length; i++)
-		{
-			for(int j = 0; j < shifted[i].length; j++)
-			{
-				System.out.print(shifted[i][j] + " ");
-				writer.write(shifted[i][j] + " ");
-			}
-			System.out.println("");
-			writer.write("\n");
-		}
-		writer.close();
-		//sorted = Alphabetize.sort(shifted, group);
-		//sorted = Alphabetize.removeNoise(sorted, group);
-		//Output.display(sorted, group);
 	}
-
 }
+//int total = 0;
+//shifted = new String[total][];
+//String[][] shifted;
+//String[][] sorted;
+
+/*for(int i = 0; i < inArrForm.length; i++)
+{
+	total += inArrForm[i].length;
+}
+
+total = 0;*/
+
+/*for(String[] strTemp : temp)
+{
+	shifted[total] = strTemp;
+	total++;
+}*/
+
+/*File file = new File("all.txt");
+BufferedWriter writer = new BufferedWriter(new FileWriter(file));
+for(int i = 0; i < shifted.length; i++)
+{
+	for(int j = 0; j < shifted[i].length; j++)
+	{
+		writer.write(shifted[i][j] + " ");
+	}
+	writer.write("\n");
+}
+writer.close();*/

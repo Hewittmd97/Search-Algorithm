@@ -10,200 +10,270 @@ public class Database {
 	private Statement myStmt = null;
 	private ResultSet myRs = null;
 	
-	Database(){
-
-		try {
+	public Database()
+	{
+		try 
+		{
 			// 1. Get a connection to database
 			myConn = DriverManager.getConnection(url, user, password);
 
 			// 2. Create a statement
 			myStmt = myConn.createStatement();
-
 		}
-		catch (Exception exc) {
+		catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 		}
 	}
 
-	boolean add(String s_index, String s_rest_string, String s_url, String s_title, String s_description) {
-				
+	public boolean add(String s_index, String s_rest_string, String s_url, String s_title, String s_description) 
+	{		
 		String sql = "INSERT INTO cyberminer"
 				+ " (`index`, rest_string, url, title, description, date_added)"
-				+ " values ('"+s_index+"', '"+s_rest_string+"', '"+s_url+"', '"+s_title+"', '"+s_description+"', CURDATE())";
-		try {
-		myStmt.executeUpdate(sql);
-		}
-		catch (Exception exc) {
+				+ " values ('"+s_index+"', '"+s_rest_string+"', '"+s_url+"',"
+						+ " '"+s_title+"', '"+s_description+"', CURDATE())";
+		try 
+		{
+			myStmt.executeUpdate(sql);
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 		}
-
 		return true;
 	}
 
-	boolean search(String s_mySearch) {
-		try {
+	public boolean search(String s_mySearch) 
+	{
+		try 
+		{
 			myRs = myStmt.executeQuery("SELECT * from cyberminer");
 			return true;
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return false;
 		}
 	}
 
-	String getSerialNo() {
-		if (myRs == null) return null;
-		try {
+	public String getSerialNo() 
+	{
+		if (myRs == null)
+		{
+			return null;
+		}
+		try 
+		{
 			return myRs.getString("serial_no");
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return null;
 		}
 	}
 
-	String getIndex() {
-		if (myRs == null) return null;
-		try {
+	public String getIndex() 
+	{
+		if (myRs == null) 
+		{
+			return null;
+		}
+		try 
+		{
 			return myRs.getString("index");
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return null;
 		}
 	}
 
-	String getRestString() {
-		if (myRs == null) return null;
-		try {
+	public String getRestString() 
+	{
+		if (myRs == null)
+		{
+			return null;
+		}
+		try 
+		{
 			return myRs.getString("rest_string");
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return null;
 		}
 	}
 
-	String getURL() {
-		if (myRs == null) return null;
-		try {
+	public String getURL() 
+	{
+		if (myRs == null)
+		{
+			return null;
+		}
+		try 
+		{
 			return myRs.getString("url");
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return null;
 		}
 	}
 
-	String getTitle() {
-		if (myRs == null) return null;
-		try {
+	public String getTitle() 
+	{
+		if (myRs == null)
+		{
+			return null;
+		}
+		try 
+		{
 			return myRs.getString("title");
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return null;
 		}
 	}
 
-	String getDescription() {
-		if (myRs == null) return null;
-		try {
+	public String getDescription() 
+	{
+		if (myRs == null)
+		{
+			return null;
+		}
+		try 
+		{
 			return myRs.getString("description");
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return null;
 		}
 	}
 
-	String getDateAdded() {
-		if (myRs == null) return null;
-		try {
+	public String getDateAdded() 
+	{
+		if (myRs == null)
+		{
+			return null;
+		}
+		try 
+		{
 			return myRs.getString("date_added");
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return null;
 		}
 	}
 
-	boolean next() {
-		if (myRs == null) return false;
-		try {
-			return myRs.next();
+	public boolean next() 
+	{
+		if (myRs == null)
+		{
+			return false;
 		}
-		catch (Exception exc) {
+		try 
+		{
+			return myRs.next();
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return false;
 		}
 	}
 
-	boolean previous() {
-		if (myRs == null) return false;
-		try {
+	public boolean previous() 
+	{
+		if (myRs == null)
+		{
+			return false;
+		}
+		try 
+		{
 			return myRs.previous();
 		}
-		catch (Exception exc) {
+		catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return false;
 		}
 	}
 	
-	boolean isFirst() {
-		if (myRs == null) return false;
-		try {
+	public boolean isFirst()
+	{
+		if (myRs == null) 
+		{
+			return false;
+		}
+		try 
+		{
 			return myRs.isFirst();
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return false;
 		}
 	}
 	
-	boolean isLast() {
-		if (myRs == null) return false;
-		try {
+	public boolean isLast()
+	{
+		if (myRs == null) 
+		{
+			return false;
+		}
+		try 
+		{
 			return myRs.isLast();
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return false;
 		}
 	}
 	
-	boolean isBeforeFirst() {
-		if (myRs == null) return false;
-		try {
+	public boolean isBeforeFirst()
+	{
+		if (myRs == null)
+		{
+			return false;
+		}
+		try 
+		{
 			return myRs.isBeforeFirst();
-		}
-		catch (Exception exc) {
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return false;
 		}
 	}
 	
-	boolean isAfterLast() {
-		if (myRs == null) return false;
-		try {
-			return myRs.isAfterLast();
+	public boolean isAfterLast() 
+	{
+		if (myRs == null)
+		{
+			return false;
 		}
-		catch (Exception exc) {
+		try
+		{
+			return myRs.isAfterLast();
+		}catch (Exception exc) 
+		{
 			System.out.println("++++++Exception Caught++++++");
 			exc.printStackTrace();
 			return false;
