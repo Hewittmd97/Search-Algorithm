@@ -11,23 +11,66 @@ public class ParseFile {
 
 	public static String[] readIn() throws IOException
 	{
-		/*
-		long lineCount;
-		try(Stream<String> linesStream = Files.lines(new File("descriptors.txt").toPath()))
-		{
-			lineCount = linesStream.count();
-		}
-		int lC = (int) lineCount;
-		for(int i = 0; i < lC; i++)
-		{
-			list.add(reader.readLine());
-		}
-		*/
 		BufferedReader reader = new BufferedReader(new FileReader(new File("descriptors.txt")));
 		List<String> list = new ArrayList<String>();
 		while(reader.ready())
 		{
 			list.add(reader.readLine());
+		}
+		for(int i = 0; i < list.size(); i++)
+		{
+			if(list.get(i).contains(","))
+			{
+				list.get(i).replaceAll(",", "");
+			} 
+			if(list.get(i).contains("-"))
+			{
+				list.get(i).replaceAll("-", " ");
+			}
+			if(list.get(i).contains("&"))
+			{
+				list.get(i).replaceAll("&", " ");
+			}
+			if(list.get(i).contains("*"))
+			{
+				list.get(i).replaceAll("*", " ");
+			}
+			if(list.get(i).contains(":"))
+			{
+				list.get(i).replaceAll(":", " ");
+			}
+			if(list.get(i).contains(";"))
+			{
+				list.get(i).replaceAll(";", " ");
+			}
+			if(list.get(i).contains("\""))
+			{
+				list.get(i).replaceAll("\"", " ");
+			}
+			if(list.get(i).contains("/"))
+			{
+				list.get(i).replaceAll("/", " ");
+			}
+			if(list.get(i).contains("."))
+			{
+				list.get(i).replaceAll(".", " ");
+			}
+			if(list.get(i).contains("     "))
+			{ 
+				list.get(i).replace("     ", " ");
+			}
+			if(list.get(i).contains("    "))
+			{
+				list.get(i).replace("    ", " ");
+			}
+			if(list.get(i).contains("   "))
+			{
+				list.get(i).replace("   ", " ");
+			}
+			if(list.get(i).contains("  "))
+			{
+				list.get(i).replace("  ", " ");
+			}
 		}
 		String[] all = list.toArray(new String[0]);
 		reader.close();
