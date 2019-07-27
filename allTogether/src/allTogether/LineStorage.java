@@ -29,6 +29,36 @@ public class LineStorage {
 		}
 		return storage;
 	}
+	
+	public static String[] storeDataNoGroup (String newLine) 
+	{
+		String[] storage;
+		String temp = newLine;
+		int numWords = 0;
+		int n = 0;
+		while (temp.contains(" ") && !temp.equals("")) 
+		{
+			numWords++;
+			temp = temp.substring(temp.indexOf(" ") + 1);
+		}
+		numWords++;
+		storage = new String[numWords];
+		if (newLine.contains(" "))
+		{
+			while (newLine.contains(" ")) 
+			{
+				storage[n] = newLine.substring(0, newLine.indexOf(" "));
+				newLine = newLine.substring(newLine.indexOf(" ") + 1);
+				n++;
+			}
+			storage[numWords - 1] = newLine;
+		}
+		else
+		{
+			storage[0] = newLine;
+		}
+		return storage;
+	}
 
 	public static String[][] convertTo2D(String[] sorted)
 	{

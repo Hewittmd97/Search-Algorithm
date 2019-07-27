@@ -9,29 +9,33 @@ package allTogether;
 
 public class CircularShift {
 
-	public static String[][][] shift(String[][] storage, int group)
+	public static String[][] shift(String[] storage)
 	{
-        String[][][] word = new String [Control.MAX_LINES][Control.MAX_WORDS][Control.MAX_WORDS];
-	    if(storage[group].length > 1) {
-            word[group] = new String[Control.MAX_LINES][storage[group].length];
-            String temp = "";
+        String[][] word = null;
+	    if(storage.length > 1) 
+	    {
+	    	word = new String[storage.length][storage.length];
+	    	String temp = "";
             String temp2 = "";
-            for (int i = 0; i < storage[group].length; i++) {
-                temp = storage[group][0];
-                for (int j = 0; j < storage[group].length; j++) {
-                    temp2 = storage[group][(j + 1) % storage[group].length];
-                    storage[group][(j + 1) % storage[group].length] = temp;
+            for (int i = 0; i < storage.length; i++) 
+            {
+                temp = storage[0];
+                for (int j = 0; j < storage.length; j++) 
+                {
+                    temp2 = storage[(j + 1) % storage.length];
+                    storage[(j + 1) % storage.length] = temp;
                     temp = temp2;
                 }
-                for (int j = 0; j < storage[group].length; j++) {
-                    word[group][i][j] = storage[group][j];
+                for (int j = 0; j < storage.length; j++) 
+                {
+                    word[i][j] = storage[j];
                 }
             }
         }
 	    else
         {
-            word[group] = new String[1][1];
-            word[group][0][0] = storage[group][0];
+            word = new String[1][1];
+            word[0][0] = storage[0];
         }
 		return word;
 	}

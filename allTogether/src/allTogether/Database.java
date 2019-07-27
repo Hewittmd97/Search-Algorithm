@@ -1,0 +1,213 @@
+package allTogether;
+import java.sql.*;
+
+public class Database {
+
+	private String url = "jdbc:mysql://localhost:3306/cyberminerdb?serverTimezone=CST";
+	private String user = "student";
+	private String password = "student";
+	private Connection myConn = null;
+	private Statement myStmt = null;
+	private ResultSet myRs = null;
+	
+	Database(){
+
+		try {
+			// 1. Get a connection to database
+			myConn = DriverManager.getConnection(url, user, password);
+
+			// 2. Create a statement
+			myStmt = myConn.createStatement();
+
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+		}
+	}
+
+	boolean add(String s_index, String s_rest_string, String s_url, String s_title, String s_description) {
+				
+		String sql = "INSERT INTO cyberminer"
+				+ " (`index`, rest_string, url, title, description, date_added)"
+				+ " values ('"+s_index+"', '"+s_rest_string+"', '"+s_url+"', '"+s_title+"', '"+s_description+"', CURDATE())";
+		try {
+		myStmt.executeUpdate(sql);
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+		}
+
+		return true;
+	}
+
+	boolean search(String s_mySearch) {
+		try {
+			myRs = myStmt.executeQuery("SELECT * from cyberminer");
+			return true;
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return false;
+		}
+	}
+
+	String getSerialNo() {
+		if (myRs == null) return null;
+		try {
+			return myRs.getString("serial_no");
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return null;
+		}
+	}
+
+	String getIndex() {
+		if (myRs == null) return null;
+		try {
+			return myRs.getString("index");
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return null;
+		}
+	}
+
+	String getRestString() {
+		if (myRs == null) return null;
+		try {
+			return myRs.getString("rest_string");
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return null;
+		}
+	}
+
+	String getURL() {
+		if (myRs == null) return null;
+		try {
+			return myRs.getString("url");
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return null;
+		}
+	}
+
+	String getTitle() {
+		if (myRs == null) return null;
+		try {
+			return myRs.getString("title");
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return null;
+		}
+	}
+
+	String getDescription() {
+		if (myRs == null) return null;
+		try {
+			return myRs.getString("description");
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return null;
+		}
+	}
+
+	String getDateAdded() {
+		if (myRs == null) return null;
+		try {
+			return myRs.getString("date_added");
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return null;
+		}
+	}
+
+	boolean next() {
+		if (myRs == null) return false;
+		try {
+			return myRs.next();
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return false;
+		}
+	}
+
+	boolean previous() {
+		if (myRs == null) return false;
+		try {
+			return myRs.previous();
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return false;
+		}
+	}
+	
+	boolean isFirst() {
+		if (myRs == null) return false;
+		try {
+			return myRs.isFirst();
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return false;
+		}
+	}
+	
+	boolean isLast() {
+		if (myRs == null) return false;
+		try {
+			return myRs.isLast();
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return false;
+		}
+	}
+	
+	boolean isBeforeFirst() {
+		if (myRs == null) return false;
+		try {
+			return myRs.isBeforeFirst();
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return false;
+		}
+	}
+	
+	boolean isAfterLast() {
+		if (myRs == null) return false;
+		try {
+			return myRs.isAfterLast();
+		}
+		catch (Exception exc) {
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+			return false;
+		}
+	}
+}
+

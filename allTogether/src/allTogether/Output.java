@@ -86,6 +86,7 @@ public class Output {
 		{
 			all[i] = reader.readLine();
 		}
+		reader.close();
 		return all;
 	}
 
