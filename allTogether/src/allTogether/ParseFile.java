@@ -19,11 +19,10 @@ public class ParseFile {
 		try (Stream<String> linesStream = Files.lines(Paths.get("descriptors.txt"), Charset.forName("Cp1252")))
 		{
 			lineCount = linesStream.count();
-			System.out.println(lineCount + "\n");
 		} catch(Exception e)
 		{
 			//do nothing
-			System.out.println(e);
+			e.printStackTrace();
 		}
 		BufferedReader reader = new BufferedReader(new FileReader(new File("descriptors.txt")));
 		List<String> list = new ArrayList<String>();
@@ -32,7 +31,7 @@ public class ParseFile {
 			String temp = reader.readLine();
 			if((i + 1) % 3 == 0)
 			{
-				if(temp.contains(".") || temp.contains(",") || temp.contains("-") || temp.contains("&") || temp.contains("*") 
+				if(temp.contains("'") || temp.contains(",") || temp.contains("-") || temp.contains("&") || temp.contains("*") 
 						|| temp.contains(":") || temp.contains(";") || temp.contains("\\") || temp.contains("\"") || temp.contains(".")
 						|| temp.contains("?"))
 				{
@@ -46,13 +45,20 @@ public class ParseFile {
 				{
 					temp = temp.replaceAll("[ ][ ]", " ");
 				}
-				if(temp.contains(" s "))
+				/*if(temp.contains(" s "))
 				{
 					temp = temp.replaceAll("[ ][s][ ]", "'s ");
 				}
 				if(temp.contains(" t "))
 				{
 					temp = temp.replaceAll("[ ][t][ ]", "'t ");
+				}*/
+			}
+			else
+			{
+				if(temp.contains("'"))
+				{
+					temp = temp.replaceAll("'", "");
 				}
 			}
 			list.add(temp);

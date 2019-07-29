@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class Database {
 
-	private String url = "jdbc:mysql://localhost:3306/cyberminerdb?serverTimezone=CST";
+	private String url = "jdbc:mysql://localhost:3306/cyberminerdb"; //?serverTimezone=CST
 	private String user = "student";
 	private String password = "student";
 	private Connection myConn = null;
@@ -31,8 +31,8 @@ public class Database {
 	{		
 		String sql = "INSERT INTO cyberminer"
 				+ " (`index`, rest_string, url, title, description, date_added)"
-				+ " values ('"+s_index+"', '"+s_rest_string+"', '"+s_url+"',"
-						+ " '"+s_title+"', '"+s_description+"', CURDATE())";
+				+ " values ('" + s_index + "', '" + s_rest_string + "', '" + s_url + "',"
+						+ " '" + s_title + "', '" + s_description + "', CURDATE())";
 		try 
 		{
 			myStmt.executeUpdate(sql);
@@ -278,6 +278,11 @@ public class Database {
 			exc.printStackTrace();
 			return false;
 		}
+	}
+	
+	public ResultSet getRS()
+	{
+		return myRs;
 	}
 }
 

@@ -1,8 +1,5 @@
 package allTogether;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -21,10 +18,7 @@ public class Foundation {
 		{
 			e.printStackTrace();
 		}
-		/*for(int i = 0; i < input.length; i++)
-		{
-			System.out.println(i + ": " + input[i] + "\n");
-		}*/
+		
 		for(int i = 0; i < input.length; i++)
 		{
 			if((i + 1) % 3 == 0)
@@ -51,38 +45,10 @@ public class Foundation {
 				{
 					restOfString += temp[j][m] + " ";
 				}
+				
 				db.add(temp[j][0], restOfString, input[group], input[group + 1], input[group + 2]);
 			}
 			group += 3;
 		}
 	}
 }
-//int total = 0;
-//shifted = new String[total][];
-//String[][] shifted;
-//String[][] sorted;
-
-/*for(int i = 0; i < inArrForm.length; i++)
-{
-	total += inArrForm[i].length;
-}
-
-total = 0;*/
-
-/*for(String[] strTemp : temp)
-{
-	shifted[total] = strTemp;
-	total++;
-}*/
-
-/*File file = new File("all.txt");
-BufferedWriter writer = new BufferedWriter(new FileWriter(file));
-for(int i = 0; i < shifted.length; i++)
-{
-	for(int j = 0; j < shifted[i].length; j++)
-	{
-		writer.write(shifted[i][j] + " ");
-	}
-	writer.write("\n");
-}
-writer.close();*/
