@@ -67,7 +67,7 @@ public class Foundation {
 			{
 				searchTerm = searchTerm.substring(0, searchTerm.length() - 1);
 			}
-			returned = Search.search(db, searchTerm);
+			returned = Search.search(db, searchTerm, null);
 			for(int i = 0; i < returned.size(); i++)
 			{
 				String[] temp = returned.get(i);
