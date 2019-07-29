@@ -4,13 +4,13 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import javax.swing.JOptionPane;
+import java.util.Scanner;
 
 public class Foundation {
 	
 	public static void main(String[] args) throws IOException
 	{
+		Scanner in = new Scanner(System.in);
 		Database db = new Database();
 		String[] input = null;
 		List<String[]> list = new ArrayList<String[]>();
@@ -54,7 +54,7 @@ public class Foundation {
 			group += 3;
 		}
 		System.out.println("Enter a term to search for: ");
-		String searchTerm = System.console().readLine();
+		String searchTerm = in.nextLine();
 		List<String[]> returned = new ArrayList<String[]>();
 		try 
 		{
