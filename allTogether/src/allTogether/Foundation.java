@@ -1,8 +1,11 @@
 package allTogether;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 public class Foundation {
 	
@@ -49,6 +52,22 @@ public class Foundation {
 				db.add(temp[j][0], restOfString, input[group], input[group + 1], input[group + 2]);
 			}
 			group += 3;
+		}
+		System.out.println("Enter a term to search for: ");
+		String searchTerm = System.console().readLine();
+		List<String[]> returned = new ArrayList<String[]>();
+		try 
+		{
+			returned = Search.search(db, searchTerm);
+			for(int i = 0; i < returned.size(); i++)
+			{
+				String[] temp = returned.get(i);
+				System.out.println(temp[0] + " : " + temp[1] + " : " + temp[2] + " : " + temp[3] + "\n");
+			}
+		} 
+		catch (Exception e) 
+		{
+			e.printStackTrace();
 		}
 	}
 }

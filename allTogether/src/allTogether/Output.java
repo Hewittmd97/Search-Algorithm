@@ -1,6 +1,6 @@
 package allTogether;
 
-import javax.swing.*;
+//import javax.swing.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.stream.Stream;
@@ -31,7 +31,7 @@ public class Output {
 				System.out.println("There was somehow an error writing to file");
 			}
 		}
-		JOptionPane.showMessageDialog(null, output);
+		//JOptionPane.showMessageDialog(null, output);
 	}
 
 	private static void writeToFile(String line) throws IOException
@@ -64,7 +64,7 @@ public class Output {
 				output += temp[i] + "\n";
 			}
 			output = output.substring(0, output.length() - 2);
-			JOptionPane.showMessageDialog(null, output);
+			//JOptionPane.showMessageDialog(null, output);
 		}
 		catch(Exception e)
 		{
