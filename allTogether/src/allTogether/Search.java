@@ -2,7 +2,6 @@ package allTogether;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 public class Search {
@@ -53,7 +52,7 @@ public class Search {
 					for(int i = 0; i < intoLL.length; i++)
 					{
 						String[] obj = ll.get(i);
-						if(intoLL[1] == obj[1])
+						if(intoLL[1].contains(obj[1]))
 						{
 							alreadyThere = true;
 							break;
@@ -79,10 +78,25 @@ public class Search {
 			intoLL = new String[4];
 			while(db.getRS().next())
 			{
+				boolean alreadyThere = false;
 				intoLL[0] = db.getRS().getString("index");
 				intoLL[1] = db.getRS().getString("url");
 				intoLL[2] = db.getRS().getString("title");
 				intoLL[3] = db.getRS().getString("description");
+				for(int i = 0; i < intoLL.length; i++)
+				{
+					String[] obj = ll.get(i);
+					if(intoLL[1].contains(obj[1]))
+					{
+						alreadyThere = true;
+						break;
+					}
+				}
+				if(alreadyThere == true)
+				{
+					intoLL = new String[4];
+					continue;
+				}
 				ll.add(intoLL);
 				intoLL = new String[4];
 			}
