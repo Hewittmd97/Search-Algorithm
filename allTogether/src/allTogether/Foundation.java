@@ -14,10 +14,12 @@ public class Foundation {
 		Database db = new Database();
 		String[] input = null;
 		List<String[]> list = new ArrayList<String[]>();
+		
 		try 
 		{
 			input = ParseFile.readIn();
-		} catch (IOException e) 
+		} 
+		catch (IOException e) 
 		{
 			e.printStackTrace();
 		}
@@ -48,7 +50,10 @@ public class Foundation {
 				{
 					restOfString += temp[j][m] + " ";
 				}
-				
+				if(db.hasNoiseWord(temp[j][0]))
+				{
+					continue;
+				}
 				db.add(temp[j][0], restOfString, input[group], input[group + 1], input[group + 2]);
 			}
 			group += 3;
@@ -58,16 +63,22 @@ public class Foundation {
 		List<String[]> returned = new ArrayList<String[]>();
 		try 
 		{
+			if(searchTerm.contains("\n"))
+			{
+				searchTerm = searchTerm.substring(0, searchTerm.length() - 1);
+			}
 			returned = Search.search(db, searchTerm);
 			for(int i = 0; i < returned.size(); i++)
 			{
 				String[] temp = returned.get(i);
-				System.out.println(temp[0] + " : " + temp[1] + " : " + temp[2] + " : " + temp[3] + "\n");
+				System.out.println(i + " : " + temp[0] + " : " + temp[1] + " : " + temp[2] + " : " + temp[3] + "\n");
 			}
 		} 
 		catch (Exception e) 
 		{
 			e.printStackTrace();
 		}
+		
+		in.close();
 	}
 }
