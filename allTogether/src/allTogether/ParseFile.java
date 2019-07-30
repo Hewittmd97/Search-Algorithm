@@ -53,6 +53,7 @@ public class ParseFile {
 				{
 					temp = temp.replaceAll("[ ][t][ ]", "t ");
 				}
+				temp = temp.replaceAll("(?<=\\d) +(?=\\d)", "");
 			}
 			else
 			{
