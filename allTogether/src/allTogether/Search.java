@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Search {
 	
-	public static List<String[]> search(Database db, String searchFor, List<String[]> list) throws SQLException
+	public static List<String[]> search(Database db, String searchFor, List<String[]> list, boolean firstCall) throws SQLException
 	{
 		List<String[]> ll = new ArrayList<String[]>();
 		String subString;
@@ -41,6 +41,7 @@ public class Search {
 					ll.add(temp);
 				}
 			}
+			//this branch will never be triggered on first call, so do not change next line.
 			return ll;
 		}
 		catch(Exception e)
@@ -51,13 +52,25 @@ public class Search {
 				
 				String string2 = searchFor.substring(searchFor.indexOf("&&") + 3);
 				System.out.println(string1 + " : " + string2);
-				List<String[]> list1 = Search.search(db, string1, null);
-				List<String[]> list2 = Search.search(db, string2, list1);
-				for(int i = 0; i < list2.size(); i++)
+				List<String[]> list1 = Search.search(db, string1, null, false);
+				List<String[]> list2 = Search.search(db, string2, list1, false);
+				if(firstCall == true)
 				{
-					ll.add(list2.get(i));
+					String[] lastly = new String[1];
+					lastly[0] = "";
+					for(int i = 0; i < list2.size(); i++)
+					{
+						String[] temp = list2.get(i);
+						lastly[0] += (temp[0] + " : " + temp[1] + " : " + temp[2] + " : " + temp[3] + "\n");
+					}
+					List<String[]> finalist = new ArrayList<String[]>();
+					finalist.add(lastly);
+					return finalist;
 				}
-				return ll;
+				else 
+				{
+					return list2;
+				}
 			}
 			else 
 			{
@@ -136,6 +149,23 @@ public class Search {
 				}
 			}
 		}
-		return ll;
+		if(firstCall == true)
+		{
+			String[] lastly = new String[1];
+			lastly[0] = "";
+			for(int i = 0; i < ll.size(); i++)
+			{
+				String[] temp = ll.get(i);
+				lastly[0] += (temp[0] + " : " + temp[1] + " : " + temp[2] + " : " + temp[3] + "\n");
+			}
+			List<String[]> finalist = new ArrayList<String[]>();
+			finalist.add(lastly);
+			System.out.println(lastly[0]);
+			return finalist;
+		}
+		else
+		{
+			return ll;
+		}
 	}
 }

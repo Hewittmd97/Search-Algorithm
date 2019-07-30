@@ -1,16 +1,14 @@
 package allTogether;
 
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Foundation {
 	
-	public static void main(String[] args) throws IOException
+	public static Database process1() throws IOException
 	{
-		Scanner in = new Scanner(System.in);
 		Database db = new Database();
 		String[] input = null;
 		List<String[]> list = new ArrayList<String[]>();
@@ -54,12 +52,21 @@ public class Foundation {
 				{
 					continue;
 				}
-				db.add(temp[j][0], restOfString, input[group], input[group + 1], input[group + 2]);
+				temp[j][0] = temp[j][0].toLowerCase();
+				restOfString = restOfString.toLowerCase();
+				db.add(temp[j][0], restOfString, input[group], input[group + 1], input[group + 2].toLowerCase());
 			}
 			group += 3;
 		}
-		System.out.println("Enter a term to search for: ");
-		String searchTerm = in.nextLine();
+		return db;
+	}
+	
+	public static void process2(Database db, Search sch)
+	{
+		Scanner in = new Scanner(System.in);
+		//System.out.println("Enter a term to search for: ");
+		String searchTerm = "";
+		//= in.nextLine();
 		List<String[]> returned = new ArrayList<String[]>();
 		try 
 		{
@@ -67,7 +74,7 @@ public class Foundation {
 			{
 				searchTerm = searchTerm.substring(0, searchTerm.length() - 1);
 			}
-			returned = Search.search(db, searchTerm, null);
+			returned = sch.search(db, searchTerm, null, true);
 			for(int i = 0; i < returned.size(); i++)
 			{
 				String[] temp = returned.get(i);

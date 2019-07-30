@@ -26,6 +26,20 @@ public class Database {
 			exc.printStackTrace();
 		}
 	}
+	
+	boolean truncateDatabase() 
+	{
+		try 
+		{
+			myStmt.executeUpdate("TRUNCATE cyberminer");
+		}
+		catch (Exception exc) 
+		{
+			System.out.println("++++++Exception Caught++++++");
+			exc.printStackTrace();
+		}
+		return true;
+	}
 
 	public boolean add(String s_index, String s_rest_string, String s_url, String s_title, String s_description) 
 	{		
