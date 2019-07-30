@@ -15,24 +15,41 @@ public class Search {
 		ResultSet rs = null;
 		try
 		{
+			//list will NOT be null if search has been called in a recursive manor. 
+			//this can be checked by calling .get and retrieving the first object in the list. 
 			list.get(0);
+			//If "&&" is still in the searchFor String, then search() must be called recursively again
+			//which occurs in the catch portion. 
 			if(searchFor.contains("&&"))
 			{
+				//to exit this try portion.
 				throw new ArithmeticException("Random Error");
 			}
+			//while searchFor still contains more than 1 word in the string. 
 			while(searchFor.contains(" "))
 			{
+				//gets first word from searchFor
 				String word = searchFor.substring(0, searchFor.indexOf(' '));
+				//remove the first word from searchFor
 				searchFor = searchFor.substring(searchFor.indexOf(' ') + 1);
+				//because search() has been called recursively, a "&&" was present at one point. 
+				//and because a list was passed to the function this time, the first set of search results has 
+				//been acquired, so now the subset acquired from database from first search must be searched to find 
+				//the subset of the subset. 
+				//loop through every object in the list. 
 				for(int i = 0; i < list.size(); i++)
 				{
+					//create a string array object to hold the object being fetched from list.
 					String[] temp = list.get(i);
+					//if the word after "&&" is also found in the descriptor from the first search subset
 					if(temp[3].contains(word))
 					{
+						//add the data to the list that will be returned. 
 						ll.add(temp);
 					}
 				}
 			}
+			//this checks to see if the word after "&&" is contained in subset from first search query. 
 			for(int i = 0; i < list.size(); i++)
 			{
 				String[] temp = list.get(i);
@@ -44,8 +61,10 @@ public class Search {
 			//this branch will never be triggered on first call, so do not change next line.
 			return ll;
 		}
+		//will catch a null pointer if list is null.
 		catch(Exception e)
 		{
+			//this 
 			if(searchFor.contains("&&")) 
 			{
 				String string1 = searchFor.substring(0, searchFor.indexOf("&&") - 1);
