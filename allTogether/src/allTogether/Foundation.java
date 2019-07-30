@@ -48,7 +48,7 @@ public class Foundation {
 				{
 					restOfString += temp[j][m] + " ";
 				}
-				if(db.hasNoiseWord(temp[j][0]))
+				if(db.hasNoiseWord(temp[j][0]) || temp[j][0].contentEquals(""))
 				{
 					continue;
 				}

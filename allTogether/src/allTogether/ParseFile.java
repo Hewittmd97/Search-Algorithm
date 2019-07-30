@@ -45,14 +45,14 @@ public class ParseFile {
 				{
 					temp = temp.replaceAll("[ ][ ]", " ");
 				}
-				/*if(temp.contains(" s "))
+				if(temp.contains(" s "))
 				{
-					temp = temp.replaceAll("[ ][s][ ]", "'s ");
+					temp = temp.replaceAll("[ ][s][ ]", "s ");
 				}
 				if(temp.contains(" t "))
 				{
-					temp = temp.replaceAll("[ ][t][ ]", "'t ");
-				}*/
+					temp = temp.replaceAll("[ ][t][ ]", "t ");
+				}
 			}
 			else
 			{
@@ -67,5 +67,4 @@ public class ParseFile {
 		reader.close();
 		return all;
 	}
-
 }
