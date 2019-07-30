@@ -179,7 +179,6 @@ public class Search {
 			}
 			List<String[]> finalist = new ArrayList<String[]>();
 			finalist.add(lastly);
-			System.out.println(lastly[0]);
 			return finalist;
 		}
 		else
