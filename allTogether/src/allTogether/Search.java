@@ -64,7 +64,7 @@ public class Search {
 		//will catch a null pointer if list is null.
 		catch(Exception e)
 		{
-			//this 
+			//this will check to see if searchFor contains "&&"
 			if(searchFor.contains("&&")) 
 			{
 				String string1 = searchFor.substring(0, searchFor.indexOf("&&") - 1);
@@ -175,7 +175,7 @@ public class Search {
 			for(int i = 0; i < ll.size(); i++)
 			{
 				String[] temp = ll.get(i);
-				lastly[0] += (temp[0] + " : " + temp[1] + " : " + temp[2] + " : " + temp[3] + "\n");
+				lastly[0] += (temp[0] + " : " + temp[1] + " : " + temp[2] + " : " + temp[3] + "\n\n");
 			}
 			List<String[]> finalist = new ArrayList<String[]>();
 			finalist.add(lastly);

@@ -115,8 +115,8 @@ class ImbeddedPanel extends JPanel implements ActionListener
 			} 
 			catch (SQLException e) 
 			{
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				resultsPanel.lbl.setText("No results were found for " + searchPanel.lbl.getText() + 
+						".\n\nPlease enter another search phrase.");
 			}
 			// pressing the search button makes stuff happen here
 		}
