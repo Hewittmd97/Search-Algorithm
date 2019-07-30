@@ -52,15 +52,17 @@ public class Foundation {
 				{
 					continue;
 				}
-				temp[j][0] = temp[j][0].toLowerCase();
-				restOfString = restOfString.toLowerCase();
-				db.add(temp[j][0], restOfString, input[group], input[group + 1], input[group + 2].toLowerCase());
+				//temp[j][0] = temp[j][0].toLowerCase();
+				//restOfString = restOfString.toLowerCase();
+				//String wabba = input[group + 2].toLowerCase();
+				db.add(temp[j][0], restOfString, input[group], input[group + 1], input[group + 2]);
 			}
 			group += 3;
 		}
 		return db;
 	}
 	
+	@SuppressWarnings("static-access")
 	public static void process2(Database db, Search sch)
 	{
 		Scanner in = new Scanner(System.in);

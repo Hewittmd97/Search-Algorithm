@@ -3,7 +3,7 @@ import java.sql.*;
 
 public class Database {
 
-	private String url = "jdbc:mysql://localhost:3306/cyberminerdb"; //?serverTimezone=CST
+	private String url = "jdbc:mysql://localhost:3306/cyberminerdb?serverTimezone=CST";
 	private String user = "student";
 	private String password = "student";
 	private Connection myConn = null;

@@ -1,6 +1,5 @@
 package allTogether;
 
-//import javax.swing.*;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.stream.Stream;
@@ -9,19 +8,14 @@ public class Output {
 
 	public static void display(String[][][] alpha, int group)
 	{
-		String output = "";
 		String lineByLine = "";
 		for(int i = 0; i < alpha[group].length; i++)
 		{
 			lineByLine = "";
 			for(int j = 0; j < alpha[group][0].length; j++)
 			{
-				output += alpha[group][i][j];
-				lineByLine += alpha[group][i][j];
-				output += " ";
 				lineByLine += " ";
 			}
-			output += "\n";
 			try
 			{
 				writeToFile(lineByLine);
@@ -31,7 +25,6 @@ public class Output {
 				System.out.println("There was somehow an error writing to file");
 			}
 		}
-		//JOptionPane.showMessageDialog(null, output);
 	}
 
 	private static void writeToFile(String line) throws IOException
